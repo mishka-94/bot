@@ -1,6 +1,7 @@
 import telebot
 import datetime
 import pytz
+import subprocess
 from telebot.types import (
     InlineKeyboardMarkup,
     InlineKeyboardButton,
@@ -691,6 +692,69 @@ def get_id(message):
 
 
 # =======================
+# апдате
+# =======================
+@bot.message_handler(commands=["update"])
+def update_bot(message):
+    if message.chat.id not in ADMIN_IDS:
+        bot.send_message(message.chat.id, "❌ У вас нет прав.")
+        return
+    
+    bot.send_message(message.chat.id, "🔄 Обновляю бота с GitHub...")
+
+    try:
+        # Пуллим изменения
+        pull_output = subprocess.check_output(
+            ["git", "-C", "/opt/bot", "pull"],
+            stderr=subprocess.STDOUT
+        ).decode()
+
+        bot.send_message(message.chat.id, f"📥 Git Pull:\n```\n{pull_output}\n```", parse_mode="Markdown")
+
+        # Перезапуск systemd
+        subprocess.call(["systemctl", "restart", "bot"])
+
+        bot.send_message(message.chat.id, "✅ Бот обновлён и перезапущен.")
+
+    except Exception as e:
+        bot.send_message(message.chat.id, f"❌ Ошибка обновления:\n{e}")
+
+
+@bot.message_handler(commands=["status"])
+def bot_status(message):
+    if message.chat.id not in ADMIN_IDS:
+        bot.send_message(message.chat.id, "❌ У вас нет прав.")
+        return
+
+    try:
+        # uptime
+        uptime = subprocess.check_output("uptime -p", shell=True).decode()
+
+        # systemd service status
+        service = subprocess.check_output(
+            ["systemctl", "is-active", "bot"]
+        ).decode().strip()
+
+        # git commit
+        commit = subprocess.check_output(
+            ["git", "-C", "/opt/bot", "rev-parse", "--short", "HEAD"]
+        ).decode().strip()
+
+        bot.send_message(
+            message.chat.id,
+            f"📊 *Статус сервера:*\n"
+            f"• Uptime: `{uptime}`\n"
+            f"• Сервис: `{service}`\n"
+            f"• Git commit: `{commit}`\n",
+            parse_mode="Markdown"
+        )
+
+    except Exception as e:
+        bot.send_message(message.chat.id, f"❌ Ошибка статуса:\n{e}")
+
+
+# =======================
 # ЗАПУСК
 # =======================
+
 bot.polling(none_stop=True)
