@@ -1,3 +1,4 @@
+print("ааааа")
 import telebot
 import datetime
 import pytz
@@ -758,3 +759,4 @@ def bot_status(message):
 # =======================
 
 bot.polling(none_stop=True)
+
