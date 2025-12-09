@@ -157,7 +157,7 @@ def start(message):
 
     bot.send_message(user, "Начинаем заполнение…", reply_markup=restart_keyboard())
 kb = InlineKeyboardMarkup()
-    for eng in engineers:
+for eng in engineers:
         kb.add(InlineKeyboardButton(eng, callback_data=f"eng:{eng}"))
 
     bot.send_message(user, "Выберите инженера:", reply_markup=kb)
@@ -499,3 +499,4 @@ def settings(message):
 # =======================
 
 bot.polling(none_stop=True
+
