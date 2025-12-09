@@ -17,7 +17,7 @@ from google.auth.transport.requests import AuthorizedSession
 # =======================
 # НАСТРОЙКИ
 # =======================
-TOKEN = "44444"
+TOKEN = "8353686586:AAGP8rO1wKkLGv8pIzQwLsk5ziUH_BmsUD4"
 TABLE_ID = "1R9RVzxYrR8ClcQpogUWAdnqpd_2UthwEcLgm2w8IL14"
 ADMIN_IDS = [8136311010]
 MOSCOW_TZ = pytz.timezone("Europe/Moscow")
@@ -496,7 +496,8 @@ def settings(message):
 # ЗАПУСК
 # =======================
 
-bot.polling(none_stop=True
+bot.polling(none_stop=True)
+
 
 
 
