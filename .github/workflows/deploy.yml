@@ -1,0 +1,24 @@
+name: Auto Deploy Bot
+
+on:
+  push:
+    branches: [ "main" ]   # срабатывает при пуше в main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Deploy to server
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd /opt/bot
+          git pull
+          systemctl restart bot
