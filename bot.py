@@ -140,10 +140,6 @@ def download_sheet_pdf():
     except:
         return None
 
-# =======================
-# СТАРТ
-# =======================
-
 @bot.message_handler(commands=["start"])
 @bot.message_handler(func=lambda m: m.text == "Старт")
 def start(message):
@@ -151,12 +147,17 @@ def start(message):
     user_data[user] = {}
 
     if not engineers:
-        bot.send_message(user, "Список инженеров пуст. Добавьте инженеров в настройках.", reply_markup=main_menu())
+        bot.send_message(
+            user,
+            "Список инженеров пуст. Добавьте инженеров в настройках.",
+            reply_markup=main_menu()
+        )
         return
 
     bot.send_message(user, "Начинаем заполнение…", reply_markup=restart_keyboard())
-kb = InlineKeyboardMarkup()
-for eng in engineers:
+
+    kb = InlineKeyboardMarkup()
+    for eng in engineers:
         kb.add(InlineKeyboardButton(eng, callback_data=f"eng:{eng}"))
 
     bot.send_message(user, "Выберите инженера:", reply_markup=kb)
@@ -496,5 +497,6 @@ def settings(message):
 # =======================
 
 bot.polling(none_stop=True
+
 
 
