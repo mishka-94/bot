@@ -1,4 +1,4 @@
-print("ааааа")
+print("а44аааа")
 import telebot
 import datetime
 import pytz
@@ -248,7 +248,7 @@ def choose_location(call):
 
     # "Другая локация"
     if loc_code == "custom":
-        bot.send_message(user, "Введите название новой локации:")
+        bot.send_message(user, "Введите название новой 7локации:")
         bot.register_next_step_handler(call.message, ask_add_location)
         return
 
@@ -759,4 +759,5 @@ def bot_status(message):
 # =======================
 
 bot.polling(none_stop=True)
+
 
