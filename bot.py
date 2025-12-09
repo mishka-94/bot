@@ -433,7 +433,7 @@ def save_to_sheet(user):
     # сообщение пользователю
     bot.send_message(user, "Запись сохранена ✔️", reply_markup=main_menu())
 
-text = (
+ text = (
     "✔ *Новая запись добавлена*\n\n"
     f"Дата начала: {row[0]}\n"
     f"Время начала: {row[1]}\n"
@@ -443,7 +443,7 @@ text = (
     f"Работы по п.№: {row[7]}\n"
     f"Ответственный: {row[8]}\n"
     f"Время окончания: {row[3]}"
-)
+ )
 
     # отправка в канал
     try:
@@ -497,6 +497,7 @@ def settings(message):
 # =======================
 
 bot.polling(none_stop=True)
+
 
 
 
