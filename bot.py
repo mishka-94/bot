@@ -432,8 +432,7 @@ def save_to_sheet(user):
 
     # сообщение пользователю
     bot.send_message(user, "Запись сохранена ✔️", reply_markup=main_menu())
-
-    text = (
+        text = (
         "✔ *Новая запись добавлена*\n\n"
         f"Инженер: {row[4]}\n"
         f"Локация: {row[5]}\n"
@@ -497,6 +496,7 @@ def settings(message):
 # =======================
 
 bot.polling(none_stop=True)
+
 
 
 
