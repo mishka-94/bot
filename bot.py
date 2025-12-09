@@ -140,7 +140,6 @@ def download_sheet_pdf():
     except:
         return None
 
-
 # =======================
 # СТАРТ
 # =======================
@@ -175,8 +174,6 @@ def restart(message):
         kb.add(InlineKeyboardButton(eng, callback_data=f"eng:{eng}"))
 
     bot.send_message(user, "Выберите инженера:", reply_markup=kb)
-
-
 # =======================
 # ВЫБОР ИНЖЕНЕРА
 # =======================
@@ -499,4 +496,5 @@ def settings(message):
 # =======================
 
 bot.polling(none_stop=True
+
 
