@@ -442,7 +442,7 @@ def save_to_sheet(user):
             f"Окончание: {row[2]} {row[3]}\n"
             f"Ответственный: {row[8]}\n"
             f"Заказ-наряд: {row[9]}"
-    )
+        )
 
     # отправка в канал
     try:
@@ -496,6 +496,7 @@ def settings(message):
 # =======================
 
 bot.polling(none_stop=True)
+
 
 
 
