@@ -439,7 +439,7 @@ def save_to_sheet(user):
             f"Инженер: {row[4]}\n"
             f"Вид работы: {row[6]}\n"
             f"Работы по п.№: {row[7]}\n"
-            f"Заказ-наряд: {row[9]}"
+            f"Заказ-наряд: {row[9]}\n"
             f"Ответственный: {row[8]}\n"
             f"Окончание: {row[2]} {row[3]}\n"
     )
@@ -496,6 +496,7 @@ def settings(message):
 # =======================
 
 bot.polling(none_stop=True)
+
 
 
 
